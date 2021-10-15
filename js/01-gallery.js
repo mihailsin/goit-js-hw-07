@@ -3,7 +3,7 @@ import { galleryItems } from './gallery-items.js';
 const gallery = document.querySelector('.gallery');
 
 const createMarkup = images => {
-  const markup = images
+  return images
     .map(({ preview, original, description }) => {
       return `<div class="gallery__item">
   <a class="gallery__link" href="${original}">
@@ -18,8 +18,16 @@ const createMarkup = images => {
     `;
     })
     .join('');
-  console.log(markup);
-  gallery.insertAdjacentHTML('beforeend', markup);
 };
-console.log(galleryItems);
-createMarkup(galleryItems);
+const markup = createMarkup(galleryItems);
+gallery.insertAdjacentHTML('beforeend', markup);
+
+const onClick = e => {
+  e.preventDefault();
+  if (e.target.nodeName !== 'IMG') {
+    return;
+  } else {
+    basicLightbox.create(`<img src="${e.target.dataset.source}">`).show();
+  }
+};
+gallery.addEventListener('click', onClick);
