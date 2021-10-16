@@ -21,10 +21,10 @@ const createMarkup = images => {
 };
 const markup = createMarkup(galleryItems);
 gallery.insertAdjacentHTML('beforeend', markup);
-
+let instance;
 const onPress = e => {
   if (e.key === 'Escape') {
-    basicLightbox.close();
+    instance.close();
   }
 };
 const onClick = e => {
@@ -32,7 +32,9 @@ const onClick = e => {
   if (e.target.nodeName !== 'IMG') {
     return;
   } else {
-    basicLightbox.create(`<img src="${e.target.dataset.source}">`).show();
+    instance = basicLightbox.create(`<img src="${e.target.dataset.source}">`);
+    instance.show();
+    console.log(instance);
   }
 };
 
