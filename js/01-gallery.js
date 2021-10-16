@@ -34,7 +34,6 @@ const onClick = e => {
   } else {
     instance = basicLightbox.create(`<img src="${e.target.dataset.source}">`);
     instance.show();
-    console.log(instance);
   }
 };
 
