@@ -22,6 +22,11 @@ const createMarkup = images => {
 const markup = createMarkup(galleryItems);
 gallery.insertAdjacentHTML('beforeend', markup);
 
+const onPress = e => {
+  if (e.key === 'Escape') {
+    basicLightbox.close();
+  }
+};
 const onClick = e => {
   e.preventDefault();
   if (e.target.nodeName !== 'IMG') {
@@ -30,4 +35,6 @@ const onClick = e => {
     basicLightbox.create(`<img src="${e.target.dataset.source}">`).show();
   }
 };
+
 gallery.addEventListener('click', onClick);
+document.addEventListener('keydown', onPress);
