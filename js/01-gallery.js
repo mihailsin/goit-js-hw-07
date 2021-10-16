@@ -1,7 +1,6 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 const gallery = document.querySelector('.gallery');
-
 const createMarkup = images => {
   return images
     .map(({ preview, original, description }) => {
@@ -20,10 +19,15 @@ const createMarkup = images => {
     .join('');
 };
 const markup = createMarkup(galleryItems);
-gallery.insertAdjacentHTML('beforeend', markup);
-let instance;
+const addMarkup = markup => {
+  gallery.insertAdjacentHTML('beforeend', markup);
+};
+addMarkup(markup);
+
+let instance = basicLightbox;
+
 const onPress = e => {
-  if (e.key === 'Escape') {
+  if (e.key === 'Escape' && instance.visible()) {
     instance.close();
   }
 };
